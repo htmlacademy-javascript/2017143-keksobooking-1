@@ -11,7 +11,6 @@ isPalindrome('Довод');
 function getNumber(str) {
   let stringOfNumbers = '';
   const sourseString = str.replaceAll(' ','');
-  Array.from(sourseString);
   for (let i = 0; i < sourseString.length; i++) {
     if (!isNaN(sourseString[i])) {
       stringOfNumbers += sourseString[i];
@@ -24,25 +23,16 @@ function getNumber(str) {
 getNumber('сейчас 2023 год');
 
 
-function amountSymbols(sourceString, minLength, extensionString) {
-  const stringLength = minLength - sourceString.length;
-  if (stringLength < extensionString.length) {
-    for (let i = 0; i < stringLength; i++) {
-      extensionString += extensionString[i];
-    }
+function expendString(string, minLength, pad) {
+  const lengthOfString = minLength - string.length;
+  if (lengthOfString <= 0) {
+    return string;
   }
 
-  if (stringLength > extensionString.length) {
-    const quantitySymbol = stringLength - extensionString.length;
-    for (let i = 1; i <= quantitySymbol; i++) {
-      extensionString += extensionString[i];
-    }
-  }
-
-  return extensionString + sourceString;
+  return pad.slice(0, lengthOfString % pad.length) + pad.repeat(lengthOfString / pad.length) + string;
 }
 
-amountSymbols('рица', 6, 'ку');
+expendString('2222', 6, '123');
 
 function getRandom(min, max) {
   if (min < 0 && min > max) {
